@@ -1,10 +1,5 @@
 # Outils locaux
 .claude/
 
-# Tests et brouillons (hors site)
-_rath_test.html
-js/wings.js
-blender/test_rath.blend
-
 # Sauvegardes Blender
 *.blend1
