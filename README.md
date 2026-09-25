@@ -1,6 +1,6 @@
 # Chambre 98 : CV interactif en 3D
 
-> Une chambre d'ado en pixel art, un vieux PC, un OS rétro… et mon CV caché à l'intérieur.
+> Une chambre en pixel art, un vieux PC, un OS rétro… et mon CV caché à l'intérieur.
 
 **▶ [Visiter la chambre](https://mehdi-pic.github.io/PORTFOLIO-DEV-3D/)**
 

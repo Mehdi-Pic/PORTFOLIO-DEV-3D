@@ -492,11 +492,9 @@ Bienvenue dans CV-OS 98 !
           side.replaceChildren();
           const p1 = panel("Tâches du dossier");
           const tasksList = h("div", "side-links");
-          const l1 = h("button", null, "▸ Tout voir en grand");
-          l1.addEventListener("click", () => { sound.click(); toggleMax(win); });
           const l2 = h("button", null, "▸ Ouvrir le Lisez-moi");
           l2.addEventListener("click", () => { sound.click(); openReadme(); });
-          tasksList.append(l1, l2);
+          tasksList.append(l2);
           p1.body.append(tasksList);
           const p2 = panel("Détails");
           if (item) {
