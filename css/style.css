@@ -39,7 +39,7 @@ img.px { image-rendering: pixelated; }
 
 /* ---------- bouton pixel ---------- */
 .pbtn {
-  font-family: "Press Start 2P", monospace; font-size: 11px; line-height: 1;
+  font-size: 15px; font-weight: 700; line-height: 1;
   color: #1a1a1a; background: #ffd166; border: 0; cursor: pointer;
   padding: 12px 14px;
   box-shadow: inset -4px -4px #d99a1e, inset 4px 4px #fff0b8, 0 0 0 3px #1a1a1a;
@@ -47,19 +47,19 @@ img.px { image-rendering: pixelated; }
 .pbtn:hover { background: #ffe08a; }
 .pbtn:active { box-shadow: inset 4px 4px #d99a1e, 0 0 0 3px #1a1a1a; }
 .pbtn.alt { background: #8ecae6; box-shadow: inset -4px -4px #4a90b8, inset 4px 4px #d4f0ff, 0 0 0 3px #1a1a1a; }
-.pbtn.small { font-size: 9px; padding: 8px 10px; }
+.pbtn.small { font-size: 13px; padding: 8px 10px; }
 
 /* ---------- chargement ---------- */
 #loader {
   position: fixed; inset: 0; z-index: 50; background: #0b0a1a;
   display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px;
-  font-family: "Press Start 2P", monospace; transition: opacity .5s steps(5);
+  transition: opacity .5s steps(5);
 }
 #loader.done { opacity: 0; pointer-events: none; }
-.ld-title { font-size: 14px; letter-spacing: 2px; }
+.ld-title { font-size: 20px; font-weight: 700; letter-spacing: 2px; }
 .ld-bar { width: min(320px, 80vw); height: 24px; border: 4px solid #fff; padding: 3px; }
 .ld-fill { height: 100%; width: 0; background: repeating-linear-gradient(90deg, #39ff14 0 12px, transparent 12px 16px); }
-.ld-pct { font-size: 10px; color: #aaa; }
+.ld-pct { font-size: 14px; color: #aaa; }
 
 /* ---------- intro ---------- */
 #intro { position: fixed; left: 24px; top: 24px; z-index: 10; pointer-events: none; }
@@ -69,10 +69,10 @@ img.px { image-rendering: pixelated; }
   box-shadow: 0 0 0 4px #1a1a1a, 0 0 0 8px #ffd166, 8px 8px 0 8px rgba(0, 0, 0, .4);
   margin: 8px;
 }
-.intro-exe { font-family: "Press Start 2P"; font-size: 9px; color: #39ff14; margin-bottom: 12px; }
-.intro-card h1 { font-family: "Press Start 2P"; font-size: 18px; line-height: 1.4; margin: 0 0 6px; color: #ffd166; text-shadow: 3px 3px 0 #b33951; }
+.intro-exe { font-size: 13px; color: #39ff14; margin-bottom: 12px; }
+.intro-card h1 { font-size: 26px; font-weight: 700; line-height: 1.25; margin: 0 0 6px; color: #ffd166; text-shadow: 3px 3px 0 #b33951; }
 .intro-sub { margin: 0 0 14px; font-size: 18px; color: #d6e4ff; }
-.intro-action { font-family: "Press Start 2P"; font-size: 9px; line-height: 1.6; color: #fff; margin: 0 0 14px; }
+.intro-action { font-size: 14px; line-height: 1.5; color: #fff; margin: 0 0 14px; }
 @keyframes blink { 50% { opacity: 0; } }
 .intro-btns { display: flex; gap: 14px; flex-wrap: wrap; padding: 3px; }
 .intro-hint { font-size: 14px; color: #9aa6d8; margin: 14px 0 0; }
@@ -88,8 +88,8 @@ img.px { image-rendering: pixelated; }
 }
 @keyframes questBob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
 .quest-label {
-  font-family: "Press Start 2P", monospace; font-size: 10px; white-space: nowrap;
-  color: #1a1a1a; background: #ffd166; padding: 7px 9px;
+  font-size: 14px; font-weight: 700; white-space: nowrap;
+  color: #1a1a1a; background: #ffd166; padding: 6px 9px;
   box-shadow: 0 0 0 3px #1a1a1a, 4px 4px 0 3px rgba(0, 0, 0, .35);
 }
 .quest-arrow { width: 0; height: 0; border: 8px solid transparent; border-top: 10px solid #ffd166; filter: drop-shadow(0 3px 0 #1a1a1a); }
@@ -98,12 +98,12 @@ img.px { image-rendering: pixelated; }
 
 #tip {
   position: fixed; z-index: 20; pointer-events: none;
-  font-family: "Press Start 2P"; font-size: 9px; line-height: 1.5; max-width: calc(100vw - 16px);
+  font-size: 14px; line-height: 1.35; max-width: calc(100vw - 16px);
   background: #fffbe0; color: #1a1a1a; padding: 7px 9px;
   box-shadow: 0 0 0 3px #1a1a1a, 4px 4px 0 3px rgba(0, 0, 0, .35);
 }
-#tip .tip-name { display: block; font-weight: 400; white-space: nowrap; }
-#tip .tip-hint { display: block; margin-top: 5px; font-size: 7px; opacity: .75; }
+#tip .tip-name { display: block; font-weight: 700; white-space: nowrap; }
+#tip .tip-hint { display: block; margin-top: 3px; font-size: 12px; opacity: .75; }
 
 #btn-mute { position: fixed; right: 16px; top: 16px; z-index: 30; }
 #btn-back { position: fixed; left: 20px; top: 20px; z-index: 30; }
@@ -111,20 +111,20 @@ img.px { image-rendering: pixelated; }
 #closeup-title {
   position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 25; pointer-events: none;
   max-width: calc(100vw - 260px); text-align: center;
-  font-family: "Press Start 2P", monospace; font-size: 15px; line-height: 1.6; color: #ffd166; text-shadow: 2px 2px 0 #b33951;
+  font-size: 21px; font-weight: 700; line-height: 1.4; color: #ffd166; text-shadow: 2px 2px 0 #b33951;
   background: rgba(16, 14, 40, .88); padding: 13px 22px;
   box-shadow: 0 0 0 3px #1a1a1a, 0 0 0 6px #ffd166, 6px 6px 0 6px rgba(0, 0, 0, .4);
   animation: fadeIn .4s steps(4);
 }
-@media (max-width: 640px) { #closeup-title { top: 72px; max-width: calc(100vw - 32px); font-size: 11px; padding: 11px 16px; } }
+@media (max-width: 640px) { #closeup-title { top: 72px; max-width: calc(100vw - 32px); font-size: 16px; padding: 11px 16px; } }
 
 @media (max-width: 640px) {
   #intro { left: 0; right: 0; top: auto; bottom: 16px; display: flex; justify-content: center; }
   .intro-card { max-width: calc(100vw - 40px); padding: 14px; }
-  .intro-card h1 { font-size: 14px; }
+  .intro-card h1 { font-size: 21px; }
   .intro-sub { font-size: 16px; }
   .intro-hint { display: none; }
-  .quest-label { font-size: 8px; padding: 6px 7px; }
+  .quest-label { font-size: 12px; padding: 5px 7px; }
 }
 
 /* =========================================================
