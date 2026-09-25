@@ -31,6 +31,9 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
     root.style.height = VH + "px";
     root.style.transform = `scale(${scale}, ${hgt / VH})`;
     root.classList.toggle("os-small", VW < 800);
+    // téléphone (même seuil que le cadrage de la caméra) : texte réduit. `os-small` ne suffit pas,
+    // il s'active aussi sur un petit écran d'ordinateur, où le moniteur 3D fait moins de 620 px
+    root.classList.toggle("os-phone", innerWidth < 700);
     for (const win of wins.values()) clampWin(win);
   }
 

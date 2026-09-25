@@ -472,29 +472,29 @@ img.px { image-rendering: pixelated; }
 .dlg-row p { margin: 0; font-size: 14px; white-space: pre-wrap; line-height: 1.3; }
 
 /* --- OS sur téléphone : texte du contenu plus petit (les titres gardent leur taille) --- */
-.os-small .doc p, .os-small .doc li, .os-small .dlg-row p, .os-small .contact-row, .os-small .skill { font-size: 12px; }
-.os-small .doc li::before { top: 10px; }
-.os-small .doc .org { font-size: 11.5px; }
-.os-small .chip, .os-small .tags span, .os-small .row small, .os-small .panel-b { font-size: 10.5px; }
-.os-small .fitem { font-size: 11px; }
-.os-small .sec { font-size: 10px; }
-.os-small .notepad { font-size: 17px; }
-.os-small .polaroid span { font-size: 13px; }
-.os-small .viewer-cap { font-size: 14px; }
+.os-phone .doc p, .os-phone .doc li, .os-phone .dlg-row p, .os-phone .contact-row, .os-phone .skill { font-size: 12px; }
+.os-phone .doc li::before { top: 10px; }
+.os-phone .doc .org { font-size: 11.5px; }
+.os-phone .chip, .os-phone .tags span, .os-phone .row small, .os-phone .panel-b { font-size: 10.5px; }
+.os-phone .fitem { font-size: 11px; }
+.os-phone .sec { font-size: 10px; }
+.os-phone .notepad { font-size: 17px; }
+.os-phone .polaroid span { font-size: 13px; }
+.os-phone .viewer-cap { font-size: 14px; }
 /* barre d'outils de l'explorateur (Précédent, Dossier parent, adresse) */
-.os-small .tbtn, .os-small .addr { font-size: 10px; }
-.os-small .tbtn { gap: 3px; padding: 1px 3px; }
-.os-small .arrow { width: 13px; height: 13px; font-size: 7px; }
-.os-small .addr .field img { width: 12px; height: 12px; }
-.os-small .status { font-size: 10px; }
+.os-phone .tbtn, .os-phone .addr { font-size: 10px; }
+.os-phone .tbtn { gap: 3px; padding: 1px 3px; }
+.os-phone .arrow { width: 13px; height: 13px; font-size: 7px; }
+.os-phone .addr .field img { width: 12px; height: 12px; }
+.os-phone .status { font-size: 10px; }
 /* encadré d'en-tête d'une page : icône, titre, organisme, étiquettes */
-.os-small .doc-head { gap: 8px; padding: 6px 10px 6px; margin-bottom: 6px; }
-.os-small .doc-head img { width: 24px; height: 24px; }
-.os-small .doc h2 { font-size: 14px; }
-.os-small .doc .org { font-size: 10.5px; }
-.os-small .chips { gap: 4px; margin-top: 4px; }
-.os-small .chip { font-size: 9.5px; line-height: 15px; padding: 0 5px; }
-.os-small .chip::before { width: 5px; height: 5px; }
+.os-phone .doc-head { gap: 8px; padding: 6px 10px 6px; margin-bottom: 6px; }
+.os-phone .doc-head img { width: 24px; height: 24px; }
+.os-phone .doc h2 { font-size: 14px; }
+.os-phone .doc .org { font-size: 10.5px; }
+.os-phone .chips { gap: 4px; margin-top: 4px; }
+.os-phone .chip { font-size: 9.5px; line-height: 15px; padding: 0 5px; }
+.os-phone .chip::before { width: 5px; height: 5px; }
 
 @media (prefers-reduced-motion: reduce) {
   .dicon:hover img, .fitem:hover img { animation: none; }
