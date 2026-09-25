@@ -341,7 +341,7 @@ img.px { image-rendering: pixelated; }
 .panel-b { padding: 7px; font-size: 12px; color: #1c3f8c; line-height: 1.3; word-break: break-word; }
 .side-links button { display: block; width: 100%; text-align: left; border: 0; background: none; color: #215dc6; font-size: 12px; padding: 2px 0; }
 .side-links button:hover { text-decoration: underline; color: #428eff; }
-.content { flex: 1; min-width: 0; overflow: auto; background: #fff; padding: 8px 10px; user-select: text; container-type: inline-size; }
+.content { flex: 1; min-width: 0; overflow: auto; background: #fff; padding: 8px 10px; user-select: text; }
 .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 8px; }
 .fitem { display: flex; flex-direction: column; align-items: center; gap: 5px; border: 1px solid transparent; background: none; padding: 6px 2px; font-size: 12px; color: #000; }
 .fitem img { width: 36px; height: 36px; }
@@ -365,12 +365,11 @@ img.px { image-rendering: pixelated; }
 .doc { max-width: 620px; margin: 0 auto; }
 /* bandeau d'en-tête : dégradé bleu façon XP, sur toute la largeur de la fenêtre même quand le texte
    est limité à sa colonne (fenêtre agrandie) ; icône et titre restent alignés sur la colonne.
-   100cqw = largeur utile de .content, 100 % = largeur de la colonne .doc */
+   Le fond (filet du bas compris) est prolongé sur les côtés par border-image + outset : simple
+   débord visuel, rogné par la fenêtre, qui ne crée jamais de défilement horizontal */
 .doc-head {
-  display: flex; align-items: center; gap: 10px; padding: 9px 12px 8px;
-  margin: -8px calc((100% - 100cqw) / 2 - 10px) 8px;
-  padding-inline: calc((100cqw - 100%) / 2 + 12px);
-  background: linear-gradient(#eef3fe, #dbe5fb); border-bottom: 1px solid #b9c9ee;
+  display: flex; align-items: center; gap: 10px; margin: -8px -10px 8px; padding: 9px 12px 8px;
+  border-image: linear-gradient(#eef3fe, #dbe5fb calc(100% - 1px), #b9c9ee 0) fill 0 / 0 / 0 100vmax;
 }
 .doc-head img { width: 32px; height: 32px; flex: none; }
 .doc-tt { min-width: 0; }
