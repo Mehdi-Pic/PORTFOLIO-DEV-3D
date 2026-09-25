@@ -462,9 +462,7 @@ Bienvenue dans CV-OS 98 !
         const toolbar = h("div", "toolbar");
         const back = h("button", "tbtn");
         back.innerHTML = `<span class="arrow back">◀</span> Précédent`;
-        const up = h("button", "tbtn");
-        up.innerHTML = `<span class="arrow up">▲</span> Dossier parent`;
-        toolbar.append(back, up);
+        toolbar.append(back);
 
         const addr = h("div", "addr");
         const field = h("div", "field");
@@ -480,11 +478,10 @@ Bienvenue dans CV-OS 98 !
 
         const go = (entry) => { history.push(entry); render(); };
         back.addEventListener("click", () => { if (history.length > 1) { sound.click(); history.pop(); render(); } });
-        up.addEventListener("click", () => { if (history.length > 1) { sound.click(); history.pop(); render(); } });
 
         function render() {
           const { node: cur, item } = history[history.length - 1];
-          back.disabled = up.disabled = history.length < 2;
+          back.disabled = history.length < 2;
           const path = history.map((e) => (e.item ? e.item.file : e.node.label));
           field.replaceChildren(iconImg(item ? item.icon || "doc" : cur.icon || "folder", 16), h("span", null, "C:\\" + path.join("\\")));
           win.titleEl.textContent = item ? item.file : cur.label;

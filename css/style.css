@@ -330,7 +330,6 @@ img.px { image-rendering: pixelated; }
 .tbtn:hover:not(:disabled) { border-color: #c3c0ae; background: #f6f5ee; }
 .tbtn:disabled { opacity: .4; cursor: default !important; }
 .arrow { display: inline-grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; color: #fff; font-size: 9px; background: #3bb13b; box-shadow: inset -1px -1px #1f7a1f; }
-.arrow.up { background: #e8a33b; box-shadow: inset -1px -1px #a36a13; }
 .addr { flex: 1; min-width: 0; display: flex; align-items: center; margin-left: 4px; font-size: 12px; }
 .addr .field { flex: 1; min-width: 0; display: flex; align-items: center; gap: 5px; background: #fff; border: 1px solid #7f9db9; padding: 1px 4px; white-space: nowrap; overflow: hidden; }
 .addr .field img { width: 14px; height: 14px; flex: none; }
@@ -494,7 +493,7 @@ img.px { image-rendering: pixelated; }
 .os-phone .polaroid span { font-size: 9px; padding: 1px 0 0; }
 .os-phone .polaroid::before { top: -4px; width: 8px; height: 8px; margin-left: -4px; box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .3), 1px 2px 0 rgba(0, 0, 0, .3); }
 .os-phone .viewer-cap { font-size: 14px; }
-/* barre d'outils de l'explorateur (Précédent, Dossier parent, adresse) */
+/* barre d'outils de l'explorateur (Précédent, adresse) */
 .os-phone .tbtn, .os-phone .addr { font-size: 10px; }
 .os-phone .tbtn { gap: 3px; padding: 1px 3px; }
 .os-phone .arrow { width: 13px; height: 13px; font-size: 7px; }
