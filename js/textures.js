@@ -131,7 +131,7 @@ export function createScreen(icons = []) {
   function drawIdle() {
     const now = new Date();
     const clock = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
-    const ready = images.every((i) => i.complete) && document.fonts.check('13px "Pixelify Sans"');
+    const ready = images.every((i) => i.complete) && document.fonts.check('13px "Pixeloid Sans"');
     const key = clock + ready + vw;
     if (key === idleKey) return false; // rien n'a changé : pas de ré-envoi de texture
     idleKey = key;
@@ -144,20 +144,20 @@ export function createScreen(icons = []) {
     ctx.save();
     ctx.scale(800 / vw, 600 / vh);
     // icônes : grille en colonnes (lignes de 76 px + 4 px d'écart, autant qu'il en tient au-dessus
-    // de la barre des tâches), colonnes de 86 px
+    // de la barre des tâches), colonnes de 96 px
     const rows = Math.max(1, Math.floor((vh - 44 + 4) / 80));
-    const font = '"Pixelify Sans", monospace';
+    const font = '"Pixeloid Sans", monospace';
     icons.forEach(({ label }, i) => {
       const col = Math.floor(i / rows), row = i % rows;
-      const x = 6 + col * 90, y = 8 + row * 80;
-      if (images[i].complete) ctx.drawImage(images[i], x + 25, y + 4, 36, 36);
+      const x = 6 + col * 100, y = 8 + row * 80;
+      if (images[i].complete) ctx.drawImage(images[i], x + 30, y + 4, 36, 36);
       ctx.font = `13px ${font}`;
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
       ctx.fillStyle = "#000";
-      ctx.fillText(label, x + 44, y + 46);
+      ctx.fillText(label, x + 49, y + 46);
       ctx.fillStyle = "#fff";
-      ctx.fillText(label, x + 43, y + 45);
+      ctx.fillText(label, x + 48, y + 45);
     });
     // barre des tâches (30 px de haut en bas de l'écran virtuel)
     const by = vh - 30;

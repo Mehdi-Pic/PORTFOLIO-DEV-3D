@@ -1,11 +1,23 @@
 /* =========================================================
    Chambre 98 : styles
    ========================================================= */
+/* Pixeloid Sans (GGBotNet, SIL OFL 1.1 : assets/fonts/PixeloidSans-OFL.txt) : police pixel du texte
+   de l'OS, plus lisible que Pixelify Sans (chiffres, 8/B, 0/O). Elle est plus large à taille égale :
+   size-adjust la ramène à l'encombrement de l'ancienne police, pour ne rien décaler à l'écran. */
+@font-face {
+  font-family: "Pixeloid Sans"; font-weight: 400; font-display: swap; size-adjust: 92%;
+  src: url("../assets/fonts/PixeloidSans.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Pixeloid Sans"; font-weight: 700; font-display: swap; size-adjust: 92%;
+  src: url("../assets/fonts/PixeloidSans-Bold.woff2") format("woff2");
+}
+
 * { box-sizing: border-box; }
 html, body {
   margin: 0; height: 100%; overflow: hidden;
   background: #0b0a1a; color: #fff;
-  font-family: "Pixelify Sans", monospace;
+  font-family: "Pixeloid Sans", monospace;
   -webkit-tap-highlight-color: transparent;
 }
 button { font: inherit; }
@@ -205,7 +217,7 @@ img.px { image-rendering: pixelated; }
 @keyframes fadeIn { from { opacity: 0; } }
 .icons {
   position: absolute; left: 6px; top: 8px; bottom: 36px;
-  display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 76px); grid-auto-columns: 86px; gap: 4px;
+  display: grid; grid-auto-flow: column; grid-template-rows: repeat(auto-fill, 76px); grid-auto-columns: 96px; gap: 4px;
 }
 .dicon {
   background: none; border: 0; padding: 4px 2px; color: #fff; font-size: 13px;
@@ -449,7 +461,7 @@ img.px { image-rendering: pixelated; }
 .btn:hover { box-shadow: inset 0 0 0 2px #f8b33a; }
 .btn.small { padding: 1px 8px; font-size: 12px; }
 .btn.big { margin-top: 12px; padding: 6px 16px; font-size: 14px; }
-.btn.go { margin-top: 6px; padding: 4px 14px; font-weight: 700; color: #0a246a; }
+.btn.go { margin-top: 6px; padding: 4px 14px; font-weight: 700; color: #0a246a; max-width: 100%; overflow-wrap: anywhere; } /* adresse longue : passe à la ligne au lieu de déborder */
 
 /* --- bloc-notes --- */
 .notepad {
