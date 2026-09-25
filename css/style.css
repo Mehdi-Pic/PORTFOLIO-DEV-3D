@@ -479,7 +479,14 @@ img.px { image-rendering: pixelated; }
 .os-phone .fitem { font-size: 11px; }
 .os-phone .sec { font-size: 10px; }
 .os-phone .notepad { font-size: 17px; }
-.os-phone .polaroid span { font-size: 13px; }
+/* polaroids punaisés : beaucoup plus petits, pour laisser la place au contenu (clic = image en grand) */
+.os-phone .board { gap: 8px 6px; margin: 4px -10px 6px; padding: 10px 6px 8px; }
+.os-phone .polaroid { width: 66px; gap: 2px; padding: 4px 4px 3px; box-shadow: 1px 2px 0 rgba(0, 0, 0, .28), 0 0 0 1px rgba(0, 0, 0, .08); }
+.os-phone .polaroid img { width: 58px; }
+.os-phone .polaroid.pano { width: min(160px, 100%); }
+.os-phone .polaroid.pano img { width: 100%; }
+.os-phone .polaroid span { font-size: 9px; padding: 1px 0 0; }
+.os-phone .polaroid::before { top: -4px; width: 8px; height: 8px; margin-left: -4px; box-shadow: inset -1px -1px 0 rgba(0, 0, 0, .3), 1px 2px 0 rgba(0, 0, 0, .3); }
 .os-phone .viewer-cap { font-size: 14px; }
 /* barre d'outils de l'explorateur (Précédent, Dossier parent, adresse) */
 .os-phone .tbtn, .os-phone .addr { font-size: 10px; }
