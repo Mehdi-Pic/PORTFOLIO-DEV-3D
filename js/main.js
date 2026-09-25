@@ -55,6 +55,17 @@ function updateStart() {
 }
 updateStart();
 const SCREEN = { center: new THREE.Vector3(0, 1.05, -2.385), w: 0.46, h: 0.345 };
+// Rotation autour de la chambre (glisser avec la souris ou le doigt) : la caméra tourne à l'horizontale
+// autour du point visé, sur 90° au plus, entre la vue face au mur du fond (0) et la vue face au mur de
+// gauche (π/2). Au-delà on verrait l'extérieur des murs. null = angle de la vue de départ.
+const ORBIT_MIN = 0, ORBIT_MAX = Math.PI / 2;
+let orbitAngle = null;
+function introPos(out) {
+  const t = START.target, dx = START.pos.x - t.x, dz = START.pos.z - t.z;
+  const a = orbitAngle ?? Math.atan2(dx, dz);
+  const r = Math.hypot(dx, dz);
+  return out.set(t.x + r * Math.sin(a), START.pos.y, t.z + r * Math.cos(a));
+}
 const camPos = START.pos.clone();
 const camTarget = START.target.clone();
 let state = "loading"; // loading | intro | zooming | desk | leaving
@@ -590,7 +601,7 @@ function leaveCloseup() {
   sharpView = false;
   state = "zooming";
   resize();
-  flyTo(START.pos.clone(), START.target.clone(), 1.8, () => {
+  flyTo(introPos(new THREE.Vector3()), START.target.clone(), 1.8, () => {
     state = "intro";
     introEl.hidden = false;
   }, 0.1);
@@ -684,7 +695,7 @@ function leavePC() {
   setTimeout(() => {
     overlay.hidden = true;
     unfreezeScene();
-    flyTo(START.pos.clone(), START.target.clone(), 2.2, () => {
+    flyTo(introPos(new THREE.Vector3()), START.target.clone(), 2.2, () => {
       state = "intro";
       introEl.hidden = false;
     });
@@ -727,8 +738,48 @@ function pick(e) {
 }
 function hideTip() { tipEl.hidden = true; document.body.style.cursor = ""; hovered = null; diplomaHover = false; setRoomHalo(null); }
 
+// Glisser dans la chambre (souris ou doigt) : tourne la vue autour de la chambre, dans les limites de
+// ORBIT_MIN / ORBIT_MAX. Un vrai glissé (plus de quelques pixels) n'est pas compté comme un clic.
+let orbitDrag = null;
+let suppressClick = false;
+canvas.addEventListener("pointerdown", (e) => {
+  suppressClick = false;
+  if (state !== "intro" || e.button > 0) return;
+  orbitDrag = { id: e.pointerId, x0: e.clientX, x: e.clientX, moved: false };
+  try { canvas.setPointerCapture(e.pointerId); } catch {} // le glissé continue même si le doigt sort du canvas
+});
+canvas.addEventListener("pointermove", (e) => {
+  const d = orbitDrag;
+  if (!d || e.pointerId !== d.id) return;
+  if (!d.moved && Math.abs(e.clientX - d.x0) > 6) {
+    d.moved = true;
+    hideTip();
+    document.body.style.cursor = "grabbing";
+  }
+  if (d.moved && state === "intro") {
+    // un demi-écran de glissé = 90° : de la vue face au mur du fond à la vue face au mur de gauche
+    const start = orbitAngle ?? Math.atan2(START.pos.x - START.target.x, START.pos.z - START.target.z);
+    const k = Math.PI / Math.max(innerWidth, 600);
+    orbitAngle = THREE.MathUtils.clamp(start + (e.clientX - d.x) * k, ORBIT_MIN, ORBIT_MAX);
+  }
+  d.x = e.clientX;
+});
+const endOrbitDrag = (e) => {
+  const d = orbitDrag;
+  if (!d || e.pointerId !== d.id) return;
+  orbitDrag = null;
+  if (d.moved) {
+    suppressClick = true; // le clic qui suit le relâcher n'active pas l'objet sous le curseur
+    document.body.style.cursor = "";
+  }
+};
+canvas.addEventListener("pointerup", endOrbitDrag);
+canvas.addEventListener("pointercancel", endOrbitDrag);
+
 addEventListener("pointermove", (e) => {
-  parallax.set((e.clientX / innerWidth) * 2 - 1, (e.clientY / innerHeight) * 2 - 1);
+  // bornée : pendant un glissé (pointeur capturé), la souris peut sortir de la fenêtre
+  parallax.set((e.clientX / innerWidth) * 2 - 1, (e.clientY / innerHeight) * 2 - 1).clampScalar(-1, 1);
+  if (orbitDrag?.moved) return; // pas de bulle ni de halo pendant qu'on fait tourner la vue
   // vue de l'étagère : halo et bulle sur le Blu-ray survolé
   if (state === "shelf") {
     const b = e.target === canvas ? pickBluray(e) : null;
@@ -740,7 +791,11 @@ addEventListener("pointermove", (e) => {
   if (state !== "intro" || e.target !== canvas) { if (state === "intro") hideTip(); return; }
   const obj = pick(e);
   const tip = obj && tipFor(obj.name);
-  if (!tip) return hideTip();
+  if (!tip) {
+    hideTip();
+    document.body.style.cursor = "grab"; // rien à cliquer ici : on peut faire glisser pour tourner
+    return;
+  }
   hovered = obj;
   showTip(e, ...tip);
   // seul le PC est cliquable, les autres objets affichent juste leur bulle
@@ -753,6 +808,7 @@ addEventListener("pointermove", (e) => {
 
 canvas.addEventListener("click", (e) => {
   sound.unlock();
+  if (suppressClick) { suppressClick = false; return; } // fin d'un glissé, pas un clic
   if (state === "bluray") return;   // géré par le glisser / relâcher de l'inspection
   if (state === "shelf") {
     const b = pickBluray(e);
@@ -1164,7 +1220,9 @@ function frame() {
 
   if (tween) stepTween(dt);
   else if (state === "intro") {
-    tmp.copy(START.pos).add(new THREE.Vector3(parallax.x * 0.3, -parallax.y * 0.15 + Math.sin(t * 0.6) * 0.03, 0));
+    // parallaxe de la souris le long de l'horizontale de la vue (elle suit la rotation autour de la chambre)
+    const a = Math.atan2(camPos.x - START.target.x, camPos.z - START.target.z);
+    introPos(tmp).add(new THREE.Vector3(Math.cos(a) * parallax.x * 0.3, -parallax.y * 0.15 + Math.sin(t * 0.6) * 0.03, -Math.sin(a) * parallax.x * 0.3));
     camPos.lerp(tmp, 0.05);
     camTarget.lerp(START.target, 0.05);
   }

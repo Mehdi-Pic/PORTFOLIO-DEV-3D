@@ -16,6 +16,8 @@ img.px { image-rendering: pixelated; }
   position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh; display: block; /* taille exacte fixée en JS */
   image-rendering: pixelated;
 }
+/* le doigt fait tourner la vue : pas de défilement ni de zoom du navigateur sur la scène */
+#scene { touch-action: none; }
 #scene-still { pointer-events: none; }
 #scene-still[hidden] { display: none; }
 #vignette {
