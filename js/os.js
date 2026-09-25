@@ -514,7 +514,7 @@ Bienvenue dans CV-OS 98 !
           side.append(p1.el, p2.el);
 
           if (item) {
-            content.replaceChildren(docView(item));
+            content.replaceChildren(docView(item, cur));
             status.textContent = "Document — " + item.file;
           } else if (cur.items.every((it) => !it.isCat && it.title)) {
             // dossier de documents : vue « détails », on lit le titre, l'employeur et les dates sans ouvrir
@@ -607,8 +607,10 @@ Bienvenue dans CV-OS 98 !
     });
   }
 
-  function docView(it) {
+  // `folder` : dossier d'où la fiche est ouverte (son option `photosLast` place les photos après le contenu)
+  function docView(it, folder) {
     const doc = h("article", "doc");
+    const photosLast = Boolean(folder?.photosLast);
     const head = h("header", "doc-head");
     head.append(iconImg(it.icon || "doc", 32));
     const tt = h("div", "doc-tt");
@@ -633,7 +635,7 @@ Bienvenue dans CV-OS 98 !
       }
       doc.append(p);
     }
-    if (it.photos?.length) doc.append(photoBoard(it.photos));
+    if (it.photos?.length && !photosLast) doc.append(photoBoard(it.photos));
     if (it.bullets?.length) {
       const ul = h("ul");
       it.bullets.forEach((b) => ul.append(richLine(b)));
@@ -650,12 +652,13 @@ Bienvenue dans CV-OS 98 !
       });
     }
     if (it.tags?.length) {
-      // seul contenu de la fiche (compétences) : pas besoin d'intitulé au-dessus des touches
-      if (it.bullets?.length || it.summary || it.photos?.length) doc.append(h("div", "sec", "Outils & technos"));
+      // touches juste sous le titre (seul contenu, ou photos placées après) : pas besoin d'intitulé
+      if (it.bullets?.length || it.summary || (it.photos?.length && !photosLast)) doc.append(h("div", "sec", "Outils & technos"));
       const tags = h("div", "tags");
       it.tags.forEach((t) => tags.append(h("span", null, t)));
       doc.append(tags);
     }
+    if (it.photos?.length && photosLast) doc.append(photoBoard(it.photos));
     if (it.school) {
       // présentation de l'établissement, ses photos en dessous
       doc.append(h("div", "sec", "L'école — " + it.school.name));

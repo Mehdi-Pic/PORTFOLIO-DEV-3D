@@ -18,6 +18,7 @@
 //  `web: { label, url }` ajoute un lien cliquable sous le résumé d'un document.
 //  `school: { name, about, photos }` ajoute une présentation de l'école avec ses photos en dessous ;
 //  `link` + `linkLabel` affichent un bouton vers la page (défaut : « Voir le projet »).
+//  Sur un dossier, `photosLast: true` affiche les photos de ses documents après leur contenu.
 //  Illustrations disponibles (js/pixelart.js) : clap, reel, popcorn, bike, road, map, ball,
 //  hoop, court, code, atom, postgres, sqlserver, git, containers, rocket, chart, pipeline,
 //  headset, server, shield, kanban, sprint, fr, en
@@ -191,6 +192,7 @@ fouiller dans mes dossiers.`,
       label: "Compétences",
       icon: "gear",
       type: "folder",
+      photosLast: true,
       description: "Ce que je sais faire, par domaine.",
       items: [
         {
