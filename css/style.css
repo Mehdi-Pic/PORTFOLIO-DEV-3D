@@ -12,6 +12,12 @@
   font-family: "Pixeloid Sans"; font-weight: 700; font-display: swap; size-adjust: 92%;
   src: url("../assets/fonts/PixeloidSans-Bold.woff2") format("woff2");
 }
+/* VT323 (SIL OFL 1.1 : assets/fonts/VT323-OFL.txt) : BIOS et Bloc-notes de l'OS. Hébergée avec le site,
+   comme toutes les polices : aucune requête vers un service tiers (Google Fonts), donc pas d'IP transmise */
+@font-face {
+  font-family: "VT323"; font-weight: 400; font-display: swap;
+  src: url("../assets/fonts/VT323.woff2") format("woff2");
+}
 
 * { box-sizing: border-box; }
 html, body {
@@ -480,6 +486,8 @@ img.px { image-rendering: pixelated; }
 .os-small .contact-row .cl { grid-column: 1 / -1; }
 .contact-row .cl { color: #666; }
 .contact-row a { color: #0645ad; word-break: break-all; user-select: text; }
+/* e-mail protégé : bouton « Afficher l'adresse » présenté comme un lien */
+.contact-row .reveal { justify-self: start; border: 0; background: none; padding: 0; color: #0645ad; text-decoration: underline; text-align: left; }
 
 /* --- boîte de dialogue --- */
 .dlg { padding: 14px; justify-content: space-between; align-items: center; }

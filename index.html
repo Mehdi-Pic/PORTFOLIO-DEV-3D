@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net 'sha256-LiMjzpKoCxUdRuTYDqnzuYdXlkqH/ddmudcmkx2cnX0='; style-src 'self'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://cdn.jsdelivr.net data: blob:; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Chambre 98 | CV interactif</title>
   <meta name="description" content="CV interactif en pixel art : ma chambre, un vieux PC et un OS rétro.">
@@ -18,24 +19,27 @@
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <link rel="preload" href="assets/fonts/PixeloidSans.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/PixeloidSans-Bold.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="css/style.css?v=9ba7bfc0">
+  <link rel="stylesheet" href="css/style.css?v=7235afdc">
   <script type="importmap">
     {
       "imports": {
         "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
         "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/",
         "./js/city.js": "./js/city.js?v=0e3ec01c",
-        "./js/cv-data.js": "./js/cv-data.js?v=958bd02a",
-        "./js/icons.js": "./js/icons.js?v=0530d370",
-        "./js/os.js": "./js/os.js?v=78dea7c4",
-        "./js/pixelart.js": "./js/pixelart.js?v=03b0b416",
+        "./js/cv-data.js": "./js/cv-data.js?v=0336e4f5",
+        "./js/icons.js": "./js/icons.js?v=562e776d",
+        "./js/os.js": "./js/os.js?v=12735632",
+        "./js/pixelart.js": "./js/pixelart.js?v=38b3a706",
         "./js/sound.js": "./js/sound.js?v=c666a86b",
         "./js/textures.js": "./js/textures.js?v=90a2915c"
+      },
+      "integrity": {
+        "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js": "sha384-GY5FqjttLCFRt/McQbyaVdCk2O1IQtOeX8Py6NfD89BIAsIyJFRl4UgSXrk2vXAk",
+        "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/loaders/GLTFLoader.js": "sha384-Lq1Wl94so5JCKGDvezrdVMJhdeKQkwb8iwRo59QrPPd61CnrCJZLxYmFlQ8ZuOKR",
+        "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/environments/RoomEnvironment.js": "sha384-9ItPPH2vgKbkvgrqTKq7ptGYe+WuAnqlZtlqleJW4/CJjnM5R7C+efD6iS7ADPJ9",
+        "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/utils/BufferGeometryUtils.js": "sha384-wOjwauvHlJO7K6APr7FmMGH2nupQa3Ndzas9bJZhsAMOK055efJud8ns4aYmASKv"
       }
     }
   </script>

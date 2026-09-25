@@ -425,14 +425,27 @@ Bienvenue dans CV-OS 98 !
         cat.links.forEach((l) => {
           const row = h("div", "contact-row");
           row.append(h("span", "cl", l.label + " :"));
-          const a = h("a", null, l.value);
-          a.href = l.href;
-          if (/^https?:/.test(l.href)) { a.target = "_blank"; a.rel = "noopener"; }
-          a.addEventListener("click", () => sound.click());
-          row.append(a);
+          // adresse e-mail protégée : affichée seulement quand le visiteur la demande
+          const value = () => (l.email ? decodeEmail(l.email) : l.value);
+          if (l.email) {
+            const show = h("button", "reveal", "Afficher l'adresse");
+            show.addEventListener("click", () => {
+              sound.click();
+              const a = h("a", null, value());
+              a.href = "mailto:" + value();
+              show.replaceWith(a);
+            });
+            row.append(show);
+          } else {
+            const a = h("a", null, l.value);
+            a.href = l.href;
+            if (/^https?:/.test(l.href)) { a.target = "_blank"; a.rel = "noopener"; }
+            a.addEventListener("click", () => sound.click());
+            row.append(a);
+          }
           const cp = h("button", "btn small", "Copier");
           cp.addEventListener("click", async () => {
-            try { await navigator.clipboard.writeText(l.value); cp.textContent = "Copié !"; sound.ding(); }
+            try { await navigator.clipboard.writeText(value()); cp.textContent = "Copié !"; sound.ding(); }
             catch { cp.textContent = "Oups"; sound.error(); }
             setTimeout(() => (cp.textContent = "Copier"), 1500);
           });
@@ -440,10 +453,11 @@ Bienvenue dans CV-OS 98 !
           list.append(row);
         });
         wrap.append(list);
-        const mail = cat.links.find((l) => l.href.startsWith("mailto:"));
+        const mail = cat.links.find((l) => l.email);
         if (mail) {
-          const send = h("a", "btn big", "✉  Nouveau message");
-          send.href = mail.href;
+          // l'adresse n'est reconstituée qu'au clic, pour ouvrir la messagerie
+          const send = h("button", "btn big", "✉  Nouveau message");
+          send.addEventListener("click", () => { sound.click(); location.href = "mailto:" + decodeEmail(mail.email); });
           wrap.append(send);
         }
         body.append(wrap);
@@ -689,6 +703,9 @@ export function downloadCV(href) {
   a.click();
   a.remove();
 }
+
+// adresse e-mail stockée en base64, écrite à l'envers (voir cv-data.js)
+const decodeEmail = (s) => [...new TextDecoder().decode(Uint8Array.from(atob(s), (c) => c.charCodeAt(0)))].reverse().join("");
 
 function esc(s) {
   return String(s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));

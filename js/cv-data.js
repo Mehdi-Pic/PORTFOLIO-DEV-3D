@@ -9,7 +9,8 @@
 //  Types de catégorie :
 //   - "note"    → ouvre un Bloc-notes avec `content`
 //   - "folder"  → ouvre un explorateur listant `items` (cliquables)
-//   - "contact" → ouvre un carnet d'adresses avec `links`
+//   - "contact" → ouvre un carnet d'adresses avec `links` ({ label, value, href } ou, pour
+//     une adresse e-mail protégée, { label, email } : base64 de l'adresse écrite à l'envers)
 //
 //  Un document peut avoir des `photos` : [{ art, caption }] ou [{ img, caption }] (fichier image ;
 //  ajouter `pixel: true` pour une image pixel art à agrandir sans lissage, `full` pour la version
@@ -296,7 +297,9 @@ fouiller dans mes dossiers.`,
       icon: "mail",
       type: "contact",
       links: [
-        { label: "E-mail", value: "adresse dans le carnet de contact du site", href: "https://mehdi-pic.github.io/PORTFOLIO-DEV-3D/" },
+        // adresse encodée (base64 de l'adresse à l'envers) : jamais en clair dans le code ni dans la page,
+        // elle n'est reconstituée qu'au clic d'un visiteur (anti-aspiration par les robots)
+        { label: "E-mail", email: "bW9jLmxpYW1nQGlkaGVtZHJhaGNpcA==" },
         { label: "LinkedIn", value: "linkedin.com/in/mehdi-pichard", href: "https://www.linkedin.com/in/mehdi-pichard" },
         { label: "GitHub", value: "github.com/Mehdi-Pic", href: "https://github.com/Mehdi-Pic" },
       ],

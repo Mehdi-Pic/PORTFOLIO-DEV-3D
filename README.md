@@ -80,4 +80,4 @@ Tous les bruitages (boot, clics, fenêtres, imprimante…) sont **synthétisés 
 
 **Mehdi PICHARD**, développeur
 
-[LinkedIn](https://www.linkedin.com/in/mehdi-pichard) · [GitHub](https://github.com/Mehdi-Pic) · [adresse dans le carnet de contact du site](https://mehdi-pic.github.io/PORTFOLIO-DEV-3D/)
+[LinkedIn](https://www.linkedin.com/in/mehdi-pichard) · [GitHub](https://github.com/Mehdi-Pic) · e-mail : dans le carnet d'adresses du [site](https://mehdi-pic.github.io/PORTFOLIO-DEV-3D/) (icône Contact)
