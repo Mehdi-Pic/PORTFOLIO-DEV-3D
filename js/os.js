@@ -115,7 +115,7 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
         <div class="splash-ed">Édition ${esc(CV.owner.name)}</div></div>
       </div>
       <div class="progress"><i></i></div>
-      <div class="splash-copy">Copyright © 1998 — Tous droits réservés</div>`;
+      <div class="splash-copy">Copyright © 1998. Tous droits réservés</div>`;
     root.append(splash);
     if (!skip) sound.hdd(2.2);
     await pause(2300);
@@ -356,7 +356,7 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
 
   function openNote(file, content, icon = "doc") {
     openWindow({
-      id: "note-" + file, title: file + " — Bloc-notes", icon, w: 520, hgt: 400,
+      id: "note-" + file, title: file + " - Bloc-notes", icon, w: 520, hgt: 400,
       build(body) {
         body.append(menubar(["Fichier", "Édition", "Format", "Affichage", "?"]));
         const pre = h("div", "notepad", content);
@@ -415,7 +415,7 @@ Bienvenue dans CV-OS 98 !
 
   function openContact(cat) {
     openWindow({
-      id: "contact", title: "Carnet d'adresses — Contact", icon: cat.icon, w: 470, hgt: 330,
+      id: "contact", title: "Carnet d'adresses - Contact", icon: cat.icon, w: 470, hgt: 330,
       build(body) {
         body.append(menubar(["Fichier", "Édition", "Affichage", "Outils", "?"]));
         const wrap = h("div", "contact");
@@ -515,7 +515,7 @@ Bienvenue dans CV-OS 98 !
 
           if (item) {
             content.replaceChildren(docView(item, cur));
-            status.textContent = "Document — " + item.file;
+            status.textContent = "Document - " + item.file;
           } else if (cur.items.every((it) => !it.isCat && it.title)) {
             // dossier de documents : vue « détails », on lit le titre, l'employeur et les dates sans ouvrir
             const rows = h("div", "rows");
@@ -560,7 +560,7 @@ Bienvenue dans CV-OS 98 !
   function richLine(text) {
     const li = h("li");
     const m = text.match(/^(.{3,70}?)\s:\s([\s\S]+)$/);
-    if (m) li.append(h("b", "lead", m[1]), document.createTextNode(" — "));
+    if (m) li.append(h("b", "lead", m[1]), document.createTextNode(" : "));
     (m ? m[2] : text).split(KEY_FIGURE).forEach((part, i) => {
       li.append(i % 2 ? h("mark", null, part) : document.createTextNode(part));
     });
@@ -583,7 +583,7 @@ Bienvenue dans CV-OS 98 !
     return board;
   }
 
-  // photo classique (réduite en douceur) ou pixel art — fichier `pixel: true` ou illustration en code — agrandi net
+  // photo classique (réduite en douceur) ou pixel art (fichier `pixel: true` ou illustration en code) agrandi net
   function photoImg(p) {
     const img = h("img", p.img && !p.pixel ? "photo" : null);
     img.src = p.img || artURL(p.art);
@@ -593,7 +593,7 @@ Bienvenue dans CV-OS 98 !
 
   function openPhoto(p) {
     openWindow({
-      id: "photo-" + (p.img || p.art), title: p.caption + ".bmp — Visionneuse", icon: "doc",
+      id: "photo-" + (p.img || p.art), title: p.caption + ".bmp - Visionneuse", icon: "doc",
       // `wide` : photo en paysage (écoles) → fenêtre plus large que haute
       w: p.wide ? 580 : p.full ? 380 : 340, hgt: p.pano ? 300 : p.wide ? 480 : p.full ? 500 : 380,
       build(body) {
@@ -661,7 +661,7 @@ Bienvenue dans CV-OS 98 !
     if (it.photos?.length && photosLast) doc.append(photoBoard(it.photos));
     if (it.school) {
       // présentation de l'établissement, ses photos en dessous
-      doc.append(h("div", "sec", "L'école — " + it.school.name));
+      doc.append(h("div", "sec", "L'école : " + it.school.name));
       doc.append(h("p", "school", it.school.about));
       if (it.school.photos?.length) doc.append(photoBoard(it.school.photos));
     }

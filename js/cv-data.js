@@ -1,5 +1,5 @@
 // ============================================================
-//  CONTENU DU CV — c'est le seul fichier à modifier pour
+//  CONTENU DU CV : c'est le seul fichier à modifier pour
 //  personnaliser le site. Tout le reste s'adapte automatiquement.
 // ============================================================
 //
@@ -76,9 +76,9 @@ fouiller dans mes dossiers.`,
         {
           file: "Support_IT_Mairie_Gennevilliers.doc",
           icon: "docBlue",
-          title: "Technicien Support Informatique — DSI",
+          title: "Technicien Support Informatique (DSI)",
           org: "Mairie de Gennevilliers",
-          date: "10 — 21 août 2026",
+          date: "10 au 21 août 2026",
           place: "Gennevilliers",
           bullets: [
             "Support N1/N2 aux agents : diagnostic et résolution d'incidents, gestion des tickets via GLPI et assistance à distance via TeamViewer",
@@ -93,7 +93,7 @@ fouiller dans mes dossiers.`,
           icon: "docBlue",
           title: "Analyste Programmeur BI / Data",
           org: "ICF Habitat (SNCF Immobilier)",
-          date: "2021 — 2023",
+          date: "2021 - 2023",
           place: "Paris",
           bullets: [
             "Pipeline ETL (SSIS) AS400 vers SQL : refonte du schéma legacy, chargement vers un entrepôt historisé multi-années, automatisé par jobs planifiés",
@@ -118,7 +118,7 @@ fouiller dans mes dossiers.`,
           icon: "docPurple",
           title: "Master Expert Informatique et Système d'Information",
           org: "EPSI",
-          date: "2021 — 2023",
+          date: "2021 - 2023",
           place: "La Défense",
           summary: "Bac+5 préparant au titre RNCP de niveau 7 « Expert en informatique et système d'information » : former des experts capables d'analyser et de piloter la stratégie du système d'information d'une entreprise.",
           bullets: [
@@ -142,7 +142,7 @@ fouiller dans mes dossiers.`,
           icon: "docPurple",
           title: "Bachelor DevOps",
           org: "EPSI",
-          date: "2020 — 2021",
+          date: "2020 - 2021",
           place: "La Défense",
           summary: "Bac+3 (titre RNCP de niveau 6, « Concepteur développeur d'applications ») : concevoir et déployer des applications complètes tout en maîtrisant les environnements DevOps.",
           bullets: [
@@ -166,7 +166,7 @@ fouiller dans mes dossiers.`,
           icon: "docPurple",
           title: "BTS Système Numérique option Informatique et Réseaux",
           org: "École Agora",
-          date: "2018 — 2020",
+          date: "2018 - 2020",
           place: "Puteaux",
           summary: "BTS de niveau Bac+2 formant des techniciens en informatique et réseaux. Il est devenu depuis le BTS CIEL (Cybersécurité, Informatique et réseaux, Électronique), toujours proposé à Agora en option Informatique et réseaux.",
           bullets: [
@@ -250,9 +250,9 @@ fouiller dans mes dossiers.`,
         {
           file: "GenDon.exe",
           icon: "docGreen",
-          title: "GenDon — Plateforme de dons locaux entre particuliers",
+          title: "GenDon : plateforme de dons locaux entre particuliers",
           org: "Gennevilliers · gendon.fr",
-          date: "Juin 2026 — aujourd'hui",
+          date: "Depuis juin 2026",
           summary: "Conçue à la demande du collectif zéro déchet pour favoriser le don gratuit d'objets, limiter les déchets et promouvoir le recyclage ; en production, 1er des recherches Google sur sa requête cible locale.",
           bullets: [
             "Application full-stack : Next.js 16 / React 19 / TypeScript / Tailwind CSS, API REST FastAPI / PostgreSQL ; déploiement multi-services (Vercel, Railway, Cloudinary, Resend)",

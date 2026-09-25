@@ -1,4 +1,4 @@
-# Chambre 98 — CV interactif en 3D
+# Chambre 98 : CV interactif en 3D
 
 > Une chambre d'ado en pixel art, un vieux PC, un OS rétro… et mon CV caché à l'intérieur.
 

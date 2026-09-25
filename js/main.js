@@ -34,7 +34,7 @@ $("#intro-title").textContent = CV.owner.title;
 // ------------------------------------------------------------------
 // stencil : sert au contour des Blu-ray survolés
 // preserveDrawingBuffer : sans lui, le navigateur (Edge/Chrome sous Windows) peut recomposer le canvas
-// à partir d'un tampon déjà vidé — sous l'OS, en revenant d'un autre onglet… → grands aplats noirs
+// à partir d'un tampon déjà vidé (sous l'OS, en revenant d'un autre onglet…) : grands aplats noirs
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, stencil: true, preserveDrawingBuffer: true, powerPreference: "high-performance" });
 renderer.setPixelRatio(1);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -523,7 +523,7 @@ const WALL_SHELF = /^(Shelf|ShelfBooks|ShelfBracket\d|ShelfFigure)$/;
 const POSTER = { center: new THREE.Vector3(-2.02, 1.55, -2.99), normal: new THREE.Vector3(0, 0, 1), w: 0.51, h: 0.72, fill: 0.8 };
 const CLOSEUPS = { diploma: DIPLOMA, shelf: SHELF, poster: POSTER };
 // titre écrit en haut de l'écran pendant une vue rapprochée
-const CLOSEUP_TITLES = { poster: "Les Sept Samouraïs — Akira Kurosawa, 1954" };
+const CLOSEUP_TITLES = { poster: "Les Sept Samouraïs, Akira Kurosawa (1954)" };
 const closeupTitle = $("#closeup-title");
 const backBtn = $("#btn-back");
 
@@ -830,19 +830,19 @@ canvas.addEventListener("click", (e) => {
 //  puis inspection en grand, à tourner en le faisant glisser
 // ------------------------------------------------------------------
 const BR_TITLES = {
-  BluRayBladeRunner: "Blade Runner — The Final Cut",
+  BluRayBladeRunner: "Blade Runner : The Final Cut",
   BluRayLogan: "Logan",
   BluRayExMachina: "Ex Machina",
   BluRayDune: "Dune + Dune : Deuxième partie",
-  ShelfFigure: "Figurine de Rathalos — Monster Hunter Wilds",
+  ShelfFigure: "Figurine de Rathalos (Monster Hunter Wilds)",
 };
 // bandeau affiché en haut pendant l'inspection d'un objet sorti de l'étagère (comme pour l'affiche)
 const INSPECT_TITLES = {
-  BluRayBladeRunner: "Blade Runner : The Final Cut — Ridley Scott, 1982",
-  BluRayLogan: "Logan — James Mangold, 2017",
-  BluRayExMachina: "Ex Machina — Alex Garland, 2014",
-  BluRayDune: "Dune + Dune : Deuxième partie — Denis Villeneuve, 2021 · 2024",
-  ShelfFigure: "Figurine de Rathalos — Monster Hunter Wilds",
+  BluRayBladeRunner: "Blade Runner : The Final Cut, Ridley Scott (1982)",
+  BluRayLogan: "Logan, James Mangold (2017)",
+  BluRayExMachina: "Ex Machina, Alex Garland (2014)",
+  BluRayDune: "Dune + Dune : Deuxième partie, Denis Villeneuve (2021 et 2024)",
+  ShelfFigure: "Figurine de Rathalos (Monster Hunter Wilds)",
 };
 const blurays = [];
 let brHover = null;
