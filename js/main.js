@@ -275,6 +275,9 @@ function addFigure([gltf, stand]) {
   roomRoot.add(fig);
 }
 
+// taille réelle de assets/room.glb (à mettre à jour si le modèle change beaucoup)
+const ROOM_BYTES = 1_795_992;
+let loadPct = 0;
 new GLTFLoader().load(
   "assets/room.glb",
   (gltf) => {
@@ -361,16 +364,21 @@ new GLTFLoader().load(
     });
     if (named.LampLight) named.LampLight.getWorldPosition(lampLight.position);
 
+    $(".ld-fill").style.width = "100%";
+    $(".ld-pct").textContent = "100%";
     loaderEl.classList.add("done");
     setTimeout(() => loaderEl.remove(), 600);
     state = "intro";
     introEl.hidden = false;
   },
   (e) => {
-    if (!e.total) return;
-    const p = Math.round((e.loaded / e.total) * 100);
-    $(".ld-fill").style.width = p + "%";
-    $(".ld-pct").textContent = p + "%";
+    // Un hébergeur qui compresse (gzip, ex. GitHub Pages) annonce la taille compressée alors que
+    // `loaded` compte les octets décompressés : on prend la taille réelle du modèle comme minimum,
+    // et la barre ne recule jamais ni ne dépasse 99 % avant la fin
+    const total = Math.max(e.total || 0, ROOM_BYTES);
+    loadPct = Math.max(loadPct, Math.min(99, Math.round((e.loaded / total) * 100)));
+    $(".ld-fill").style.width = loadPct + "%";
+    $(".ld-pct").textContent = loadPct + "%";
   },
   (err) => {
     console.error(err);
