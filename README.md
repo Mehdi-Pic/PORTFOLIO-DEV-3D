@@ -1,20 +1,20 @@
 # Chambre 98 : CV interactif en 3D
 
-> Une chambre en pixel art, un vieux PC, un OS rétro… et mon CV caché à l'intérieur.
+> Ma chambre en pixel art, un vieux PC, un OS rétro… et mon CV caché à l'intérieur.
 
 **▶ [Visiter la chambre](https://mehdi-pic.github.io/PORTFOLIO-DEV-3D/)**
 
 ![Aperçu de la chambre](assets/og-image.png)
 
 **Chambre 98** est mon CV de développeur transformé en petite expérience 3D jouable directement dans le navigateur.
-Plutôt qu'une page à faire défiler, le visiteur entre dans une chambre de nuit, s'installe au bureau et allume l'ordinateur pour découvrir mon parcours.
+Plutôt qu'une page à faire défiler, le visiteur entre dans ma chambre, de nuit, s'installe au bureau et allume l'ordinateur pour découvrir mon parcours.
 
 ---
 
 ## L'expérience
 
 ### 🛏️ La chambre
-Une chambre modélisée dans **Blender** et rendue avec **Three.js** en basse résolution, sans lissage, pour un vrai rendu *pixel art*. Les ombres sont en aplats (*toon shading*) et l'éclairage est celui d'une chambre de nuit : clair de lune, lampe de bureau et lueur bleutée de l'écran.
+Ma chambre, modélisée dans **Blender** et rendue avec **Three.js** en basse résolution, sans lissage, pour un vrai rendu *pixel art*. Les ombres sont en aplats (*toon shading*) et l'éclairage est celui d'une chambre de nuit : clair de lune, lampe de bureau et lueur bleutée de l'écran.
 
 Par la fenêtre, une **ville de nuit** : un shader calcule ce que l'œil verrait à travers la vitre. Trois rangées d'immeubles à des profondeurs différentes créent une vraie parallaxe quand la caméra bouge, sous un ciel étoilé.
 
