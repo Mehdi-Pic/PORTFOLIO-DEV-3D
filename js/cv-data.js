@@ -28,7 +28,7 @@ export const CV = {
     name: "Mehdi PICHARD",
     title: "Développeur",
     // CV téléchargeable (imprimante de la chambre + menu démarrer)
-    cvFile: "assets/CV_Mehdi_PICHARD.docx",
+    cvFile: "assets/CV_Mehdi_PICHARD.pdf",
   },
 
   // Aperçu dessiné sur la feuille qui sort de l'imprimante
