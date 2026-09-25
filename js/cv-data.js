@@ -16,7 +16,7 @@
 //  nette ouverte au clic, `wide` si elle est en paysage et `pano` pour un polaroid panoramique),
 //  affichées en polaroids punaisés.
 //  `web: { label, url }` ajoute un lien cliquable sous le résumé d'un document.
-//  `school: { name, about, photos }` ajoute une présentation de l'école avec ses photos en dessous ;
+//  `school: { name, photos }` ajoute l'école avec ses photos en dessous (`about` : texte facultatif) ;
 //  `link` + `linkLabel` affichent un bouton vers la page (défaut : « Voir le projet »).
 //  Sur un dossier, `photosLast: true` affiche les photos de ses documents après leur contenu.
 //  Illustrations disponibles (js/pixelart.js) : clap, reel, popcorn, bike, road, map, ball,
@@ -120,22 +120,18 @@ fouiller dans mes dossiers.`,
           org: "EPSI",
           date: "2021 - 2023",
           place: "La Défense",
-          summary: "Bac+5 préparant au titre RNCP de niveau 7 « Expert en informatique et système d'information » : former des experts capables d'analyser et de piloter la stratégie du système d'information d'une entreprise.",
+          summary: "Titre RNCP de niveau 7 (Bac+5), obtenu en 2023. J'y ai appris à analyser un système d'information et à piloter les projets qui le font évoluer.",
           bullets: [
-            "Concevoir, préparer et piloter des projets de développement du SI (solutions applicatives ou d'infrastructure)",
-            "Garantir la performance, la fiabilité et la sécurité des systèmes, tout en maîtrisant les coûts",
-            "Deux années accessibles en initial ou en alternance, avec spécialisations (cybersécurité, data, DevOps, IA…)",
+            "Gestion de projet : concevoir, préparer et piloter des projets du SI, côté applicatif comme côté infrastructure",
+            "Qualité des systèmes : tenir compte de la performance, de la fiabilité et de la sécurité, sans perdre de vue les coûts",
           ],
           school: {
             name: "EPSI Paris",
-            about: "Créée en 1961 par des professionnels de l'informatique, l'EPSI est une école privée d'ingénierie informatique présente dans une dizaine de villes en France. Pendant mes études, son campus parisien était installé au cœur du quartier d'affaires de La Défense (Jardins Boieldieu, Puteaux), au plus près des entreprises qui recrutent stagiaires et alternants.",
             photos: [
               { img: "assets/ecoles/epsi_campus.webp", full: "assets/ecoles/epsi_campus_hd.webp", wide: true, caption: "Le campus" },
               { img: "assets/ecoles/epsi_defense.webp", full: "assets/ecoles/epsi_defense_hd.webp", wide: true, caption: "La Défense" },
             ],
           },
-          link: "https://www.epsi.fr/programmes/ingenierie-informatique",
-          linkLabel: "Voir la formation",
         },
         {
           file: "Bachelor_DevOps.doc",
@@ -144,22 +140,19 @@ fouiller dans mes dossiers.`,
           org: "EPSI",
           date: "2020 - 2021",
           place: "La Défense",
-          summary: "Bac+3 (titre RNCP de niveau 6, « Concepteur développeur d'applications ») : concevoir et déployer des applications complètes tout en maîtrisant les environnements DevOps.",
+          summary: "Titre RNCP de niveau 6 (Bac+3) « Concepteur développeur d'applications ». Une année consacrée à développer des applications complètes et à les mettre en production.",
           bullets: [
-            "Développement front-end, back-end et mobile : Python, Java, JavaScript, bases de données",
-            "Conteneurisation, intégration et déploiement continus (Docker, CI/CD), mise en production",
-            "Plans de tests, documentation du déploiement et méthodologie Agile, au fil de nombreux projets en équipe",
+            "Développement : front-end, back-end et mobile en Python, Java et JavaScript, avec leurs bases de données",
+            "DevOps : conteneurisation avec Docker, intégration et déploiement continus (CI/CD), mise en production",
+            "Travail en équipe : projets menés en méthode Agile, avec plans de tests et documentation du déploiement",
           ],
           school: {
             name: "EPSI Paris",
-            about: "L'école d'ingénierie informatique fondée en 1961, dont le campus parisien se trouvait alors au cœur de La Défense. La pédagogie y mise sur les projets en équipe, les ateliers pratiques et l'alternance en entreprise.",
             photos: [
               { img: "assets/ecoles/epsi_campus.webp", full: "assets/ecoles/epsi_campus_hd.webp", wide: true, caption: "Le campus" },
               { img: "assets/ecoles/epsi_defense.webp", full: "assets/ecoles/epsi_defense_hd.webp", wide: true, caption: "La Défense" },
             ],
           },
-          link: "https://www.epsi.fr/programmes/bachelor-dev-ops",
-          linkLabel: "Voir la formation",
         },
         {
           file: "BTS_SN_IR.doc",
@@ -168,21 +161,18 @@ fouiller dans mes dossiers.`,
           org: "École Agora",
           date: "2018 - 2020",
           place: "Puteaux",
-          summary: "BTS de niveau Bac+2 formant des techniciens en informatique et réseaux. Il est devenu depuis le BTS CIEL (Cybersécurité, Informatique et réseaux, Électronique), toujours proposé à Agora en option Informatique et réseaux.",
+          summary: "BTS de niveau Bac+2 (aujourd'hui BTS CIEL), où j'ai posé mes bases en réseaux et en développement.",
           bullets: [
-            "Étude, conception, exploitation et maintenance de réseaux informatiques",
-            "Développement logiciel, valorisation de la donnée et sensibilisation à la cybersécurité",
-            "Débouchés : technicien réseaux et télécoms, exploitation, maintenance informatique, intégration de solutions de sécurité",
+            "Réseaux : étude, conception, exploitation et maintenance de réseaux informatiques",
+            "Développement : logiciel et valorisation de la donnée",
+            "Cybersécurité : premières notions et bonnes pratiques",
           ],
           school: {
             name: "Lycée Agora",
-            about: "Lycée public de l'académie de Versailles situé au 120 rue de Verdun à Puteaux. En plus des voies générale et technologique (STI2D), il accueille des sections de BTS tournées vers l'informatique, les réseaux et l'électronique, très demandées sur Parcoursup.",
             photos: [
               { img: "assets/ecoles/agora_pano.webp", full: "assets/ecoles/agora_pano_hd.webp", wide: true, pano: true, caption: "Le lycée, côté cour" },
             ],
           },
-          link: "https://lyc-agora-puteaux.ac-versailles.fr/spip.php?article104",
-          linkLabel: "Voir la formation",
         },
       ],
     },

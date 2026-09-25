@@ -655,7 +655,7 @@ Bienvenue dans CV-OS 98 !
     if (it.school) {
       // présentation de l'établissement, ses photos en dessous
       doc.append(h("div", "sec", "L'école : " + it.school.name));
-      doc.append(h("p", "school", it.school.about));
+      if (it.school.about) doc.append(h("p", "school", it.school.about));
       if (it.school.photos?.length) doc.append(photoBoard(it.school.photos));
     }
     if (it.link) {
