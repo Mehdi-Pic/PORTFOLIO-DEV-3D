@@ -37,7 +37,7 @@ Le PC n'est pas le seul objet interactif :
 - **Le diplôme** accroché au mur, qu'on peut regarder de près.
 - **L'étagère** :
   - des **Blu-ray** : chaque boîtier peut être sorti, tourné dans tous les sens et reposé. Ils ont leur propre rendu glacé, avec vernis et reflets, qui contraste avec le reste de la chambre ;
-  - une **figurine de Rathalos** posée sur son socle, avec des ailes remodelées en code pour retrouver la courbe des illustrations officielles.
+  - une **figurine de Rathalos** posée en vol sur un socle rocheux modélisé dans Blender.
 - **L'imprimante** : un clic lance l'impression de mon CV. La feuille sort, tombe en virevoltant et s'empile au sol, pendant que le fichier est téléchargé.
 
 ### 🔊 Le son
@@ -65,10 +65,9 @@ Tous les bruitages (boot, clics, fenêtres, imprimante…) sont **synthétisés 
 │   ├── textures.js   # textures pixel art générées
 │   ├── pixelart.js   # illustrations des polaroïds
 │   ├── icons.js      # icônes de l'OS
-│   ├── sound.js      # sons synthétisés (WebAudio)
-│   └── wings.js      # remodelage des ailes de la figurine
+│   └── sound.js      # sons synthétisés (WebAudio)
 ├── assets/           # modèles 3D, affiches, photos, CV téléchargeable
-└── blender/          # fichiers source Blender
+└── blender/          # fichier source Blender de la chambre
 ```
 
 ---
