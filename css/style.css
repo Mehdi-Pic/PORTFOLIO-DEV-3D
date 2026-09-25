@@ -481,6 +481,20 @@ img.px { image-rendering: pixelated; }
 .os-small .notepad { font-size: 17px; }
 .os-small .polaroid span { font-size: 13px; }
 .os-small .viewer-cap { font-size: 14px; }
+/* barre d'outils de l'explorateur (Précédent, Dossier parent, adresse) */
+.os-small .tbtn, .os-small .addr { font-size: 10px; }
+.os-small .tbtn { gap: 3px; padding: 1px 3px; }
+.os-small .arrow { width: 13px; height: 13px; font-size: 7px; }
+.os-small .addr .field img { width: 12px; height: 12px; }
+.os-small .status { font-size: 10px; }
+/* encadré d'en-tête d'une page : icône, titre, organisme, étiquettes */
+.os-small .doc-head { gap: 8px; padding: 6px 10px 6px; margin-bottom: 6px; }
+.os-small .doc-head img { width: 24px; height: 24px; }
+.os-small .doc h2 { font-size: 14px; }
+.os-small .doc .org { font-size: 10.5px; }
+.os-small .chips { gap: 4px; margin-top: 4px; }
+.os-small .chip { font-size: 9.5px; line-height: 15px; padding: 0 5px; }
+.os-small .chip::before { width: 5px; height: 5px; }
 
 @media (prefers-reduced-motion: reduce) {
   .dicon:hover img, .fitem:hover img { animation: none; }
