@@ -306,7 +306,8 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
   function applyGeom(win) {
     const s = win.el.style;
     win.el.classList.toggle("max", win.max);
-    if (win.max) { s.left = s.top = "0px"; s.width = "100%"; s.height = "calc(100% - 30px)"; }
+    // .winlayer s'arrête déjà au-dessus de la barre des tâches : 100 % colle la fenêtre contre elle
+    if (win.max) { s.left = s.top = "0px"; s.width = "100%"; s.height = "100%"; }
     else { s.left = win.x + "px"; s.top = win.y + "px"; s.width = win.w + "px"; s.height = win.h + "px"; }
   }
   function clampWin(win) {
