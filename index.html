@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Chambre 98 — CV interactif</title>
+  <meta name="description" content="CV interactif en pixel art : une chambre d'ado, un vieux PC et un OS rétro.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <canvas id="scene"></canvas>
+  <canvas id="scene-still" hidden></canvas>
+  <div id="vignette"></div>
+
+  <div id="loader">
+    <div class="ld-title">CHARGEMENT…</div>
+    <div class="ld-bar"><div class="ld-fill"></div></div>
+    <div class="ld-pct">0%</div>
+  </div>
+
+  <div id="intro" hidden>
+    <div class="intro-card">
+      <div class="intro-exe">CHAMBRE_98.EXE</div>
+      <h1 id="intro-name"></h1>
+      <p id="intro-title" class="intro-sub"></p>
+      <p id="intro-action" class="intro-action"></p>
+      <div class="intro-btns">
+        <button id="btn-start" class="pbtn"></button>
+      </div>
+      <p class="intro-hint">Astuce : le diplôme, l'étagère et l'imprimante aussi sont cliquables 😉</p>
+    </div>
+  </div>
+
+  <button id="quest" hidden aria-label="Cliquez ici pour utiliser le PC">
+    <span class="quest-bob">
+      <span class="quest-label">Cliquez ici</span>
+      <span class="quest-arrow"></span>
+    </span>
+  </button>
+
+  <button id="quest-print" class="quest" hidden aria-label="Imprimer mon CV (téléchargement)">
+    <span class="quest-bob">
+      <span class="quest-label">Imprimer mon CV</span>
+      <span class="quest-arrow"></span>
+    </span>
+  </button>
+
+  <div id="tip" hidden></div>
+
+  <button id="btn-back" class="pbtn" hidden>◀ Retour</button>
+  <div id="closeup-title" hidden></div>
+
+  <div id="screen-overlay" hidden>
+    <div id="os"></div>
+    <div class="crt-fx"></div>
+  </div>
+
+  <button id="btn-mute" class="pbtn small">SON : ON</button>
+
+  <noscript>Ce CV interactif nécessite JavaScript.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
