@@ -44,8 +44,9 @@ scene.background = new THREE.Color("#0b0a1a");
 const camera = new THREE.PerspectiveCamera(40, 1, 0.05, 30);
 
 const START_WIDE = { pos: new THREE.Vector3(3.5, 2.75, 3.3), target: new THREE.Vector3(-0.45, 0.95, -1.2) };
-// en portrait : plus près du bureau, et cadré plus bas pour laisser la place à la carte d'intro
-const START_TALL = { pos: new THREE.Vector3(2.3, 2.6, 1.9), target: new THREE.Vector3(-0.5, 0.35, -1.6) };
+// en portrait : face au bureau, cadré pour garder dans l'écran tout ce qui est cliquable (affiche,
+// étagère, PC, diplôme, imprimante) au-dessus de la carte d'intro
+const START_TALL = { pos: new THREE.Vector3(1.8, 2.6, 1.9), target: new THREE.Vector3(0.7, 0.8, -1.6) };
 const START = { pos: START_WIDE.pos.clone(), target: START_WIDE.target.clone() };
 function updateStart() {
   const s = innerWidth / innerHeight < 0.9 ? START_TALL : START_WIDE;
@@ -1126,6 +1127,15 @@ function updatePrint(dt) {
 // ------------------------------------------------------------------
 const clock = new THREE.Clock();
 const tmp = new THREE.Vector3();
+// place un marqueur au-dessus d'un point projeté (coordonnées normalisées), sans le laisser
+// déborder de l'écran : près d'un bord, l'étiquette glisse vers l'intérieur au lieu d'être coupée
+function placeQuest(el, p) {
+  el.hidden = false;
+  const half = el.offsetWidth / 2 + 6;
+  const x = Math.min(innerWidth - half, Math.max(half, ((p.x + 1) / 2) * innerWidth));
+  el.style.transform = `translate(${x}px, ${((1 - p.y) / 2) * innerHeight}px) translate(-50%, -100%)`;
+}
+
 function frame() {
   const dt = Math.min(clock.getDelta(), 0.05);
   const t = clock.elapsedTime;
@@ -1146,17 +1156,11 @@ function frame() {
   screenLight.intensity = m === "hidden" ? 2.0 : m === "idle" ? 2.0 + Math.sin(t * 9) * 0.08 : m === "boot" ? 1.6 : 0.2;
 
   // marqueur de quête au-dessus du PC
-  if (state === "intro" && named.MonitorBezel) {
-    const p = QUEST_POS.clone().project(camera);
-    questEl.hidden = false;
-    questEl.style.transform = `translate(${((p.x + 1) / 2) * innerWidth}px, ${((1 - p.y) / 2) * innerHeight}px) translate(-50%, -100%)`;
-  } else questEl.hidden = true;
+  if (state === "intro" && named.MonitorBezel) placeQuest(questEl, QUEST_POS.clone().project(camera));
+  else questEl.hidden = true;
   // …et au-dessus de l'imprimante
-  if (state === "intro" && named.Printer && !printing) {
-    const p = named.Printer.getWorldPosition(tmp).add(PRINT_QUEST_OFFSET).project(camera);
-    questPrintEl.hidden = false;
-    questPrintEl.style.transform = `translate(${((p.x + 1) / 2) * innerWidth}px, ${((1 - p.y) / 2) * innerHeight}px) translate(-50%, -100%)`;
-  } else questPrintEl.hidden = true;
+  if (state === "intro" && named.Printer && !printing) placeQuest(questPrintEl, named.Printer.getWorldPosition(tmp).add(PRINT_QUEST_OFFSET).project(camera));
+  else questPrintEl.hidden = true;
   updatePrint(dt);
   updateDiplomaCue(t);
   updateInspect(dt);

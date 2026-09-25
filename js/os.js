@@ -225,6 +225,8 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
   // ---------------------------------------------------------------
   function openWindow({ id, title, icon, w = 520, hgt = 380, build }) {
     closeStart();
+    // la bulle de bienvenue a fait son travail : elle ne doit pas masquer la fenêtre ouverte
+    desktop.querySelector(".balloon")?.remove();
     if (wins.has(id)) {
       const win = wins.get(id);
       win.el.hidden = false;
