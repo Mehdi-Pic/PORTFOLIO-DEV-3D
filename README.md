@@ -35,9 +35,10 @@ Fenêtres déplaçables, barre des tâches, menu Démarrer, horloge, illustratio
 Le PC n'est pas le seul objet interactif :
 
 - **Le diplôme** accroché au mur, qu'on peut regarder de près.
-- **L'étagère de Blu-ray** : chaque boîtier peut être sorti, tourné dans tous les sens et reposé. Ils ont leur propre rendu glacé, avec vernis et reflets, qui contraste avec le reste de la chambre.
+- **L'étagère** :
+  - des **Blu-ray** : chaque boîtier peut être sorti, tourné dans tous les sens et reposé. Ils ont leur propre rendu glacé, avec vernis et reflets, qui contraste avec le reste de la chambre ;
+  - une **figurine de Rathalos** posée sur son socle, avec des ailes remodelées en code pour retrouver la courbe des illustrations officielles.
 - **L'imprimante** : un clic lance l'impression de mon CV. La feuille sort, tombe en virevoltant et s'empile au sol, pendant que le fichier est téléchargé.
-- **Une figurine de Rathalos** posée sur son socle, avec des ailes remodelées en code pour retrouver la courbe des illustrations officielles.
 
 ### 🔊 Le son
 Tous les bruitages (boot, clics, fenêtres, imprimante…) sont **synthétisés en temps réel avec WebAudio**. Le projet ne contient aucun fichier audio.
