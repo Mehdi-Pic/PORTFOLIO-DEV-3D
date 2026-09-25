@@ -460,6 +460,12 @@ function resize() {
   // devant le diplôme on rend en pleine résolution pour que le texte soit lisible
   PIX = sharpView ? 1 : w < 700 ? 1.5 : Math.max(2, Math.round(Math.min(w, hh * 1.7) / 800));
   renderer.setSize(Math.ceil(w / PIX), Math.ceil(hh / PIX), false);
+  // taille affichée = exactement celle utilisée pour la caméra et l'OS superposé. En CSS, 100vh vaut
+  // sur mobile la hauteur SANS barre d'adresse : la scène était étirée et l'OS décalé par rapport à l'écran 3D
+  for (const c of [canvas, $("#scene-still")]) {
+    c.style.width = w + "px";
+    c.style.height = hh + "px";
+  }
   camera.aspect = w / hh;
   camera.fov = baseFov();
   updateStart();
