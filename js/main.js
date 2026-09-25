@@ -613,9 +613,12 @@ backBtn.addEventListener("click", (e) => {
   else if (state === "bluray") putBackBluray();
   else leaveCloseup();
 });
+// Échap = « Retour » : quitte le PC (l'OS est retrouvé tel quel en revenant), range l'objet
+// inspecté ou quitte la vue rapprochée
 addEventListener("keydown", (e) => {
   if (e.key !== "Escape") return;
-  if (state === "bluray") putBackBluray();
+  if (state === "desk") leavePC();
+  else if (state === "bluray") putBackBluray();
   else leaveCloseup();
 });
 addEventListener("resize", resize);

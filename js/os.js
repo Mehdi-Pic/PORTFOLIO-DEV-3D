@@ -336,11 +336,6 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
     win.task.remove();
     wins.delete(win.id);
   }
-  function topWindow() {
-    let top = null;
-    for (const w of wins.values()) if (!w.el.hidden && (!top || +w.el.style.zIndex > +top.el.style.zIndex)) top = w;
-    return top;
-  }
 
   // ---------------------------------------------------------------
   //  Applications
@@ -684,14 +679,6 @@ Bienvenue dans CV-OS 98 !
     items.forEach((i) => m.append(h("span", null, i)));
     return m;
   }
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && desktop?.isConnected) {
-      if (startMenu.classList.contains("open")) return closeStart();
-      const top = topWindow();
-      if (top) closeWindow(top);
-    }
-  });
 
   // le bureau est-il déjà affiché ? (on le retrouve tel quel en revenant au PC)
   const isRunning = () => !!desktop?.isConnected;
