@@ -446,16 +446,22 @@ function placeOverlay() {
   const c = SCREEN.center;
   const tl = new THREE.Vector3(c.x - SCREEN.w / 2, c.y + SCREEN.h / 2, c.z).project(camera);
   const br = new THREE.Vector3(c.x + SCREEN.w / 2, c.y - SCREEN.h / 2, c.z).project(camera);
-  const x0 = ((tl.x + 1) / 2) * innerWidth, y0 = ((1 - tl.y) / 2) * innerHeight;
-  const x1 = ((br.x + 1) / 2) * innerWidth, y1 = ((1 - br.y) / 2) * innerHeight;
+  // calé sur le canvas tel qu'il est réellement affiché (et non sur innerWidth/innerHeight) :
+  // l'OS reste collé à l'écran 3D même si le navigateur mobile redimensionne la page à sa façon
+  const r = canvas.getBoundingClientRect();
+  const x0 = r.left + ((tl.x + 1) / 2) * r.width, y0 = r.top + ((1 - tl.y) / 2) * r.height;
+  const x1 = r.left + ((br.x + 1) / 2) * r.width, y1 = r.top + ((1 - br.y) / 2) * r.height;
   // 1 px de marge de chaque côté pour couvrir l'arrondi des gros pixels de la scène 3D
   const m = 1;
   Object.assign(overlay.style, { left: x0 - m + "px", top: y0 - m + "px", width: x1 - x0 + 2 * m + "px", height: y1 - y0 + 2 * m + "px" });
   os.layout(x1 - x0 + 2 * m, y1 - y0 + 2 * m);
 }
 
+let viewW = 0, viewH = 0; // dernière taille de fenêtre appliquée
 function resize() {
   const w = innerWidth, hh = innerHeight;
+  viewW = w;
+  viewH = hh;
   // taille d'un "gros pixel" : léger effet pixel art, sans trop sacrifier la lisibilité
   // devant le diplôme on rend en pleine résolution pour que le texte soit lisible
   PIX = sharpView ? 1 : w < 700 ? 1.5 : Math.max(2, Math.round(Math.min(w, hh * 1.7) / 800));
@@ -466,7 +472,9 @@ function resize() {
     c.style.width = w + "px";
     c.style.height = hh + "px";
   }
-  camera.aspect = w / hh;
+  // proportions de l'image réellement affichée : la scène ne peut pas être étirée
+  const shown = canvas.getBoundingClientRect();
+  camera.aspect = shown.width && shown.height ? shown.width / shown.height : w / hh;
   camera.fov = baseFov();
   updateStart();
   camera.updateProjectionMatrix();
@@ -1143,6 +1151,9 @@ function placeQuest(el, p) {
 }
 
 function frame() {
+  // filet de sécurité : sur Android, la barre d'adresse qui apparaît ou disparaît ne déclenche pas
+  // toujours l'événement « resize » ; on resynchronise dès que la taille de la fenêtre a changé
+  if (innerWidth !== viewW || innerHeight !== viewH) resize();
   const dt = Math.min(clock.getDelta(), 0.05);
   const t = clock.elapsedTime;
 
