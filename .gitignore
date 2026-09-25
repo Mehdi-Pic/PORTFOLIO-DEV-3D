@@ -1,5 +1,41 @@
-# Outils locaux
-.claude/
+# --- Privé : originaux non caviardés, brouillons (jamais en ligne) ---
+_prive/
+*.original.*
+*_original.*
 
-# Sauvegardes Blender
+# --- Secrets (au cas où) ---
+.env
+.env.*
+*.pem
+*.key
+secrets.*
+
+# --- Outils locaux ---
+.claude/
+.vscode/
+.idea/
+*.code-workspace
+
+# --- Blender : sauvegardes et fichiers temporaires ---
 *.blend1
+*.blend2
+*.blend@
+*.blend~
+
+# --- Office : fichiers de verrouillage (~$CV.docx) et temporaires ---
+~$*
+*.tmp
+.~lock.*#
+
+# --- Système ---
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+._*
+
+# --- Divers ---
+node_modules/
+*.log
+__pycache__/

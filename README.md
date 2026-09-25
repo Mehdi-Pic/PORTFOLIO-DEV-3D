@@ -2,6 +2,10 @@
 
 > Une chambre d'ado en pixel art, un vieux PC, un OS rétro… et mon CV caché à l'intérieur.
 
+**▶ [Visiter la chambre](https://mehdi-pic.github.io/PORTFOLIO-DEV-3D/)**
+
+![Aperçu de la chambre](assets/og-image.png)
+
 **Chambre 98** est mon CV de développeur transformé en petite expérience 3D jouable directement dans le navigateur.
 Plutôt qu'une page à faire défiler, le visiteur entre dans une chambre de nuit, s'installe au bureau et allume l'ordinateur pour découvrir mon parcours.
 
