@@ -47,9 +47,11 @@ export const CV = {
       icon: "card",
       type: "note",
       content:
-`Mehdi PICHARD, développeur full-stack titulaire d'un
-Master Expert en informatique et système d'information
-(Bac+5), basé à Gennevilliers.
+`Bonjour ! 👋
+
+Je m'appelle Mehdi PICHARD et je suis développeur
+full-stack, titulaire d'un Master Expert en informatique
+et système d'information (Bac+5), basé à Gennevilliers.
 
 Je développe des applications web, du front en passant
 par le back jusqu'à la mise en production.
