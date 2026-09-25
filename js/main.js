@@ -290,6 +290,22 @@ function addFigure([gltf, stand]) {
 // taille réelle de assets/room.glb (à mettre à jour si le modèle change beaucoup)
 const ROOM_BYTES = 1_795_992;
 let loadPct = 0;
+// Sous le plateau du bureau (caisson, tiroirs, pieds, panneau du fond) : la lampe et la lueur de l'écran
+// sont au-dessus du plateau, qui devrait les cacher. La scène n'ayant pas d'ombres, ces deux lumières
+// éclairaient quand même ces pièces : taches claires, reflets bleutés et paliers « toon » qui sautent.
+// On leur retire donc les lumières ponctuelles (restent l'ambiance, la lune et la lumière d'appoint).
+const UNDER_DESK = /^(DeskDrawers|Drawer\d|DrawerKnob\d|DeskLeg\d|DeskBackPanel)$/;
+const NO_POINT_LIGHTS = /#if \( NUM_POINT_LIGHTS > 0 \) && defined\( RE_Direct \)[\s\S]*?#pragma unroll_loop_end\s*#endif/;
+function withoutPointLights(mat) {
+  mat.onBeforeCompile = (shader) => {
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <lights_fragment_begin>",
+      THREE.ShaderChunk.lights_fragment_begin.replace(NO_POINT_LIGHTS, "")
+    );
+  };
+  mat.customProgramCacheKey = () => "without-point-lights";
+}
+
 new GLTFLoader().load(
   "assets/room.glb",
   (gltf) => {
@@ -362,6 +378,7 @@ new GLTFLoader().load(
       } else {
         mat = new THREE.MeshToonMaterial({ color, gradientMap });
       }
+      if (UNDER_DESK.test(o.name)) withoutPointLights(mat);
       o.material = mat;
       if (!NO_PICK.test(o.name)) pickables.push(o);
     });
