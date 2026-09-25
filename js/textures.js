@@ -119,6 +119,7 @@ export function createScreen(icons = []) {
   let modeT = 0;
   let last = 0;
   let idleKey = "";
+  let vw = 800; // résolution virtuelle de l'OS qui prendra le relais (800×600, ou 420×315 sur téléphone)
 
   const images = icons.map(({ icon }) => {
     const img = new Image();
@@ -131,16 +132,23 @@ export function createScreen(icons = []) {
     const now = new Date();
     const clock = String(now.getHours()).padStart(2, "0") + ":" + String(now.getMinutes()).padStart(2, "0");
     const ready = images.every((i) => i.complete) && document.fonts.check('13px "Pixelify Sans"');
-    const key = clock + ready;
+    const key = clock + ready + vw;
     if (key === idleKey) return false; // rien n'a changé : pas de ré-envoi de texture
     idleKey = key;
 
     ctx.imageSmoothingEnabled = false;
     ctx.drawImage(wallpaperCanvas(), 0, 0, 800, 600);
-    // icônes : grille en colonnes de 7 (lignes de 76 px + 4 px d'écart), colonnes de 86 px
+    // le bureau est dessiné à la résolution virtuelle de l'OS puis agrandi à la texture 800×600,
+    // exactement comme l'OS HTML est agrandi sur l'écran : même disposition, mêmes proportions
+    const vh = vw * 0.75;
+    ctx.save();
+    ctx.scale(800 / vw, 600 / vh);
+    // icônes : grille en colonnes (lignes de 76 px + 4 px d'écart, autant qu'il en tient au-dessus
+    // de la barre des tâches), colonnes de 86 px
+    const rows = Math.max(1, Math.floor((vh - 44 + 4) / 80));
     const font = '"Pixelify Sans", monospace';
     icons.forEach(({ label }, i) => {
-      const col = Math.floor(i / 7), row = i % 7;
+      const col = Math.floor(i / rows), row = i % rows;
       const x = 6 + col * 90, y = 8 + row * 80;
       if (images[i].complete) ctx.drawImage(images[i], x + 25, y + 4, 36, 36);
       ctx.font = `13px ${font}`;
@@ -151,24 +159,26 @@ export function createScreen(icons = []) {
       ctx.fillStyle = "#fff";
       ctx.fillText(label, x + 43, y + 45);
     });
-    // barre des tâches
-    const bar = ctx.createLinearGradient(0, 570, 0, 600);
+    // barre des tâches (30 px de haut en bas de l'écran virtuel)
+    const by = vh - 30;
+    const bar = ctx.createLinearGradient(0, by, 0, vh);
     bar.addColorStop(0, "#3a80f3"); bar.addColorStop(0.07, "#2a68e0"); bar.addColorStop(0.75, "#245edb"); bar.addColorStop(0.76, "#1941a5");
-    ctx.fillStyle = bar; ctx.fillRect(0, 570, 800, 30);
-    const start = ctx.createLinearGradient(0, 570, 0, 600);
+    ctx.fillStyle = bar; ctx.fillRect(0, by, vw, 30);
+    const start = ctx.createLinearGradient(0, by, 0, vh);
     start.addColorStop(0, "#6fd46f"); start.addColorStop(0.07, "#3c9c3c"); start.addColorStop(0.75, "#34913a"); start.addColorStop(0.76, "#2d7d2d");
     ctx.fillStyle = start;
-    ctx.beginPath(); ctx.moveTo(0, 570); ctx.lineTo(112, 570); ctx.arc(112, 585, 15, -Math.PI / 2, Math.PI / 2); ctx.lineTo(0, 600); ctx.fill();
-    [["#f35325", 0, 0], ["#81bc06", 8, 0], ["#05a6f0", 0, 8], ["#ffba08", 8, 8]].forEach(([col, dx, dy]) => px(ctx, 10 + dx, 578 + dy, col, 7, 7));
+    ctx.beginPath(); ctx.moveTo(0, by); ctx.lineTo(112, by); ctx.arc(112, by + 15, 15, -Math.PI / 2, Math.PI / 2); ctx.lineTo(0, vh); ctx.fill();
+    [["#f35325", 0, 0], ["#81bc06", 8, 0], ["#05a6f0", 0, 8], ["#ffba08", 8, 8]].forEach(([col, dx, dy]) => px(ctx, 10 + dx, by + 8 + dy, col, 7, 7));
     ctx.font = `italic bold 17px ${font}`;
     ctx.textAlign = "left";
     ctx.textBaseline = "middle";
-    ctx.fillStyle = "#1a4d1a"; ctx.fillText("démarrer", 34, 586);
-    ctx.fillStyle = "#fff"; ctx.fillText("démarrer", 33, 585);
-    px(ctx, 730, 570, "#0f8ae5", 70, 30);
-    px(ctx, 730, 570, "#0b5fb3", 2, 30);
+    ctx.fillStyle = "#1a4d1a"; ctx.fillText("démarrer", 34, by + 16);
+    ctx.fillStyle = "#fff"; ctx.fillText("démarrer", 33, by + 15);
+    px(ctx, vw - 70, by, "#0f8ae5", 70, 30);
+    px(ctx, vw - 70, by, "#0b5fb3", 2, 30);
     ctx.font = `13px ${font}`;
-    ctx.fillStyle = "#fff"; ctx.fillText(clock, 760, 585);
+    ctx.fillStyle = "#fff"; ctx.fillText(clock, vw - 40, by + 15);
+    ctx.restore();
     crtFx();
     return true;
   }
@@ -242,6 +252,8 @@ export function createScreen(icons = []) {
     texture: tex,
     draw,
     setMode(m, t) { mode = m; modeT = t; last = 0; },
+    // disposition du bureau à reproduire (largeur virtuelle de l'OS : 800 ou 420)
+    setLayout(w) { if (w !== vw) { vw = w; last = 0; } },
     get mode() { return mode; },
   };
 }

@@ -4,7 +4,7 @@ import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 import { mergeVertices } from "three/addons/utils/BufferGeometryUtils.js";
 import * as TX from "./textures.js";
 import { sound } from "./sound.js";
-import { createOS, downloadCV } from "./os.js";
+import { createOS, downloadCV, osVirtualWidth } from "./os.js";
 import { CV } from "./cv-data.js";
 import { createCity } from "./city.js";
 
@@ -478,6 +478,11 @@ function resize() {
   camera.fov = baseFov();
   updateStart();
   camera.updateProjectionMatrix();
+  // largeur qu'aura l'écran une fois devant le PC → même bureau dans la texture 3D que dans l'OS HTML,
+  // pour qu'il n'y ait aucun saut au moment où l'OS prend le relais
+  const deskD = deskPose().pos.z - SCREEN.center.z;
+  const deskScreenW = (SCREEN.w / (2 * deskD * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2) * camera.aspect)) * (shown.width || w);
+  screenFx.setLayout(osVirtualWidth(deskScreenW + 2));
   if (state === "desk" || CLOSEUPS[state] || state === "bluray") {
     const p = state === "desk" ? deskPose() : closeupPose(CLOSEUPS[state] || SHELF);
     camPos.copy(p.pos);

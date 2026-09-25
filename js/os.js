@@ -11,6 +11,10 @@ const h = (tag, cls, text) => {
 };
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
+// résolution virtuelle de l'OS selon la largeur réelle de l'écran qui l'affiche (px) : partagée avec
+// la texture de l'écran 3D, qui dessine le même bureau avant que l'OS HTML n'apparaisse
+export const osVirtualWidth = (w) => (w < 620 ? 420 : 800);
+
 export function createOS(root, CV, sound, { onQuit } = {}) {
   let VW = 800, VH = 600, scale = 1;
   let wallpaper = null;
@@ -24,7 +28,7 @@ export function createOS(root, CV, sound, { onQuit } = {}) {
   //  agrandie pour remplir l'écran du moniteur 3D.
   // ---------------------------------------------------------------
   function layout(w, hgt) {
-    VW = w < 620 ? 420 : 800;
+    VW = osVirtualWidth(w);
     VH = VW * 0.75;
     scale = w / VW;
     root.style.width = VW + "px";
