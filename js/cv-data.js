@@ -279,7 +279,6 @@ fouiller dans mes dossiers.`,
         {
           file: "Cinema.txt", icon: "doc", title: "Cinéma",
           summary: "Mes 3 films préférés : Blade Runner, Barry Lyndon et Les 7 Samouraïs.",
-          web: { label: "Mon letterboxd", url: "https://boxd.it/bwunj" },
           photos: [
             { img: "assets/posters/blade_runner.png", full: "assets/posters/blade_runner_hd.webp", pixel: true, caption: "Blade Runner" },
             { img: "assets/posters/barry_lyndon.png", full: "assets/posters/barry_lyndon_hd.webp", pixel: true, caption: "Barry Lyndon" },
