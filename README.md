@@ -29,7 +29,7 @@ Tout le CV y est rangé comme sur un vrai bureau :
 | 💼 **Expériences** | Mes postes, un fichier par expérience |
 | 🎓 **Formations** | Mes diplômes, avec la présentation et les photos de chaque école |
 | ⚙️ **Compétences** | Classées par domaine : dev, DevOps & cloud, data & BI, infra, méthodes, langues |
-| 🚀 **Projets** | Dont [GenDon](https://gendon.fr) et… ce CV lui-même |
+| 🚀 **Projets** | [GenDon](https://gendon.fr), un Letterboxd pour l'anime, de l'IA en local, des générateurs de vidéos, un jeu Roblox… et ce CV lui-même |
 | 🎮 **Loisirs** | Cinéma, vélo, basket-ball |
 | ✉️ **Contact** | Carnet d'adresses : e-mail, LinkedIn, GitHub |
 
